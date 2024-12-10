@@ -1,0 +1,88 @@
+name: Wordpress Deploy Via SFTP
+
+run-name: Wordpress Deploy To Server 🚀
+on:
+  push:
+    tags:
+      - production-*
+
+jobs:
+  send_deploying:
+    name: Send Telegram Message When Deploying
+    runs-on: ubuntu-latest
+    env:
+      super_secret: ${{ secrets.FPT_DIR_PATH }}
+    steps:
+      - name: Check if FPT_DIR_PATH is set
+        if: ${{ env.super_secret != '' }}
+        id: check_secret
+        run: echo "FPT_DIR_PATH=${{ secrets.FPT_DIR_PATH }}"
+
+      - name: Send Telegram Message When Deploying
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_GROUP_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: html
+          message: |
+            <i><code>Hexa</code><b> Website Deploying... 🚀</b></i>
+
+            <b>Details:</b>
+            Project name 💻: ${{ github.repository }}
+            Project link 🔎: https://hexapm.com/
+
+  web-deploy-via-sfpt:
+    name: 🚀 Deploy Website To Production
+
+    runs-on: ubuntu-latest
+
+    needs: send_deploying
+
+    steps:
+      - name: 🚚 Get Latest Code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: 🔨 Build Project
+        run: |
+          npm install
+          npm run build
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{secrets.FPT_SERVER}}
+          username: ${{secrets.FPT_USERNAME}}
+          password: ${{secrets.FTP_PASSWORD}}
+          local-dir: ./src/
+          server-dir: /${{secrets.FPT_DIR_PATH}}/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/wp-content/plugins/**
+
+  notification-to-telegram:
+    runs-on: ubuntu-latest
+    needs: [send_deploying, web-deploy-via-sfpt]
+    if: |
+      always() && 
+      (needs.web-deploy-via-sfpt.result == 'success')
+    steps:
+      - name: Telegram Notification
+        uses: appleboy/telegram-action@master
+
+        with:
+          to: ${{ secrets.TELEGRAM_GROUP_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: html
+          message: |
+            <i><code>Hexa</code><b> Website Deployed ✅</b></i>
+
+            <b>Details:</b>
+            Project name 💻: ${{ github.repository }}
+            Project link 🔎: https://hexapm.com/
