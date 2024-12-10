@@ -25,11 +25,11 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: html
           message: |
-            <i><code>Hexa</code><b> Website Deploying... 🚀</b></i>
+            <i><code>Thevinguys</code><b> Website Deploying... 🚀</b></i>
 
             <b>Details:</b>
             Project name 💻: ${{ github.repository }}
-            Project link 🔎: https://hexapm.com/
+            Project link 🔎: https://thevinguys.com/
 
   web-deploy-via-sfpt:
     name: 🚀 Deploy Website To Production
@@ -81,8 +81,8 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: html
           message: |
-            <i><code>Hexa</code><b> Website Deployed ✅</b></i>
+            <i><code>Thevinguys</code><b> Website Deployed ✅</b></i>
 
             <b>Details:</b>
             Project name 💻: ${{ github.repository }}
-            Project link 🔎: https://hexapm.com/
+            Project link 🔎:https://thevinguys.com/
