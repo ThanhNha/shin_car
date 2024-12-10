@@ -57,6 +57,16 @@
     color: #ccc;
     cursor: not-allowed;
     pointer-events: none;
+    ul {
+      display: none;
+      margin-left: 20px;
+      li {
+        pointer-events: none !important;
+
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
   }
   .sidebar-step.active.done {
     cursor: pointer !important;
@@ -69,6 +79,12 @@
     font-weight: bold;
     color: #666666;
     pointer-events: all !important;
+    ul {
+      display: block;
+      li {
+        color: #212121b3;
+      }
+    }
   }
 }
 
