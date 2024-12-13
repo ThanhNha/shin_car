@@ -2,7 +2,7 @@ $(document).ready(function () {
 
   $("#vin_form").on("submit", function (event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
-    const API_KEY = "d5f7f24176774111947515bf212f2b95";
+    const API_KEY = "e3518f4c3c5746b08b72229a0c077772";
 
     // Show loading spinner
     $("#vinFormloadingSpinner").show();

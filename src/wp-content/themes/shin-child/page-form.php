@@ -11,7 +11,7 @@ the_content();
 
 ?>
 <?php
-if (!isset($_GET['year_car'])) return;
+if (!isset($_REQUEST['year_car'])) return;
 ?>
 <div class="page-form">
   <div class="container">
@@ -59,6 +59,7 @@ if (!isset($_GET['year_car'])) return;
             </ul>
           </li>
           <li id="sidebar-step-16" class="sidebar-step">Step 7: Offer Delivery</li>
+
         </ul>
       </div>
 
@@ -75,8 +76,8 @@ if (!isset($_GET['year_car'])) return;
             <div class="elementor-field elementor-select-wrapper">
               <div class="select-caret-down-wrapper">
               </div>
-              <select id="year_car" name="year_car">
-                <option value="" class="elementor-field-textual elementor-size-sm"><?php echo $_GET['year_car']; ?></option>
+              <select id="year_car_result" name="year_car_result">
+                <option value="<?php echo $_REQUEST['year_car']; ?>" class="elementor-field-textual elementor-size-sm"><?php echo $_REQUEST['year_car']; ?></option>
               </select>
             </div>
           </div>
@@ -86,8 +87,8 @@ if (!isset($_GET['year_car'])) return;
             <div class="elementor-field elementor-select-wrapper">
               <div class="select-caret-down-wrapper">
               </div>
-              <select id="make" name="make">
-                <option value=""><?php echo $_GET['make']; ?></option>
+              <select id="make_result" name="make_result">
+                <option selected value="<?php echo $_REQUEST['make']; ?>"><?php echo $_REQUEST['make']; ?></option>
               </select>
             </div>
           </div>
@@ -97,19 +98,8 @@ if (!isset($_GET['year_car'])) return;
             <div class="elementor-field elementor-select-wrapper">
               <div class="select-caret-down-wrapper">
               </div>
-              <select id="model" name="model">
-                <option value=""><?php echo $_GET['model']; ?></option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Model Field -->
-          <div class="elementor-field-type-select elementor-field-group">
-            <div class="elementor-field elementor-select-wrapper">
-              <div class="select-caret-down-wrapper">
-              </div>
-              <select id="mileage" name="mileage">
-                <option value=""><?php echo $_GET['mileage']; ?></option>
+              <select id="model_result" name="model_result">
+                <option selected value="<?php echo $_REQUEST['model']; ?>"><?php echo $_REQUEST['model']; ?></option>
               </select>
             </div>
           </div>
@@ -119,7 +109,7 @@ if (!isset($_GET['year_car'])) return;
               <div class="select-caret-down-wrapper">
               </div>
               <select id="mileage" name="mileage">
-                <option value=""><?php echo $_GET['trim']; ?></option>
+                <option value="<?php echo $_REQUEST['mileage']; ?> " selected><?php echo $_REQUEST['mileage']; ?></option>
               </select>
             </div>
           </div>
@@ -362,17 +352,48 @@ if (!isset($_GET['year_car'])) return;
 
           <label for="phone">Phone Number (Optional):</label>
           <input type="tel" id="phone" name="phone">
-          <button class="button-submit" type="submit">GET AN INSTANT OFFER <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <button class="button-submit" id="get_car_result" type="submit">GET AN INSTANT OFFER <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg></span></button>
+
         </fieldset>
+
+
         <div class="loading-spinner" id="loadingSpinner"></div>
 
 
       </form>
+      <div class="container">
+        <div id="result_car">
+          <span class="title">Ta da! We'd love to buy your
+            <strong>
+
+              <span id="year_result">
+                <?php echo $_REQUEST['year_car']; ?>
+              </span>
+
+              <span id="make_result">
+                <?php echo $_REQUEST['model']; ?>
+              </span>
+
+              <span id="model_result">
+                <?php echo $_REQUEST['make']; ?>
+              </span>
+
+            </strong>
+            for
+          </span>
+
+
+          <div id="total_cost"></div>
+
+          <button class="back_home"><a href="/"> Back</a></button>
+        </div>
+      </div>
     </div>
   </div>
+
 </div>
 <?php
 

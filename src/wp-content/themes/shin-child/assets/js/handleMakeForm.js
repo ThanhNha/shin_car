@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  handleMakeFormSubmit();
+  // handleMakeFormSubmit();
   handleMakeFormChange();
   // Show loading spinner
 
@@ -36,7 +36,7 @@ function hideLoadingSpinner() {
 function handleMakeFormSubmit() {
   $("#make_model").on("submit", function (event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
-    const API_KEY = "d5f7f24176774111947515bf212f2b95";
+    const API_KEY = "e3518f4c3c5746b08b72229a0c077772";
 
     // Show loading spinner
     $("#makeModelloadingSpinner").show();
@@ -45,6 +45,7 @@ function handleMakeFormSubmit() {
     var year_car = $("#year_car").val();
     var make = $("#make").val();
     var model = $("#model").val();
+    var trim = $("#trim").val();
 
     // Validate required fields
     if (!year_car || !make || !model) {
@@ -52,37 +53,8 @@ function handleMakeFormSubmit() {
       $("#makeModelloadingSpinner").hide();
       return;
     }
+    // window.location.href = `/form-collection?make=${make}&model=${model}&year_car=${year_car}&strim=${trim}`;
 
-    // API URL with parameters
-    var apiUrl = `https://api.vehicledatabases.com/market-value/v2/ymm/${year_car}?make=${make}&model=${model}`;
-
-    // Make the API call using jQuery's AJAX
-    $.ajax({
-      url: apiUrl,
-      method: "GET",
-      headers: {
-        "x-AuthKey": API_KEY,
-      },
-      success: function (data) {
-        // Hide loading spinner after response
-        $("#loadingSpinner").hide();
-        const response = data.data;
-        // Check if the data contains an offer
-        console.log(data.data);
-        if (response && response.basic) {
-          // Redirect to the results page and pass data via query string
-          window.location.href = `/form-collection?make=${response.basic.make}&model=${response.basic.model}&year_car=${response.basic.year}&mileage=${response.basic.mileage}&state=${response.basic.state}`;
-        } else {
-          alert("No offer available for the provided details.");
-        }
-      },
-      error: function (xhr, status, error) {
-        // Hide loading spinner
-        $("#makeModelloadingSpinner").hide();
-        alert("An error occurred. Please try again later.");
-        console.error(error);
-      },
-    });
   });
 }
 // Populate Year dropdown
@@ -113,6 +85,33 @@ function populateMakeSelect(response) {
   }
 }
 
+// Model change event handler
+$("#model").change(function () {
+  const model = $(this).val();
+  const year = $("#year_car").val();
+  const make = $("#make").val();
+  if (!model || !year) return;
+
+  const trimlUrl = `https://api.vehicledatabases.com/ymm-specs/options/v2/trim/${year}/${make}/${model}`;
+  fetchData(trimlUrl, {}, populateTrimSelect);
+});
+
+// Populate Trim dropdown
+
+function populateTrimSelect(response) {
+  const trimSelect = $("#trim");
+
+  trimSelect.prop("disabled", false);
+  if (response.status === "success" && response.trims != 0) {
+    trimSelect.empty().append('<option value="">Trim</option>');
+    response.trims.forEach((trim) => {
+      trimSelect.append(`<option value="${trim}">${trim}</option>`);
+    });
+  } else {
+    console.error("No models found for this make.");
+  }
+}
+
 // Make change event handler
 $("#make").change(function () {
   const make = $(this).val();
@@ -133,7 +132,6 @@ function populateModelSelect(response) {
       modelSelect.append(`<option value="${model}">${model}</option>`);
     });
     modelSelect.prop("disabled", false);
-    trimInput.prop("disabled", false);
   } else {
     console.error("No models found for this make.");
   }
@@ -141,7 +139,7 @@ function populateModelSelect(response) {
 
 // Generic fetch function
 function fetchData(url, data, successCallback) {
-  const API_KEY = "d5f7f24176774111947515bf212f2b95";
+  const API_KEY = "e3518f4c3c5746b08b72229a0c077772";
 
   $.ajax({
     url: url,

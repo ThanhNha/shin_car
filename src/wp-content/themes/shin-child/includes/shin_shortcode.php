@@ -11,7 +11,7 @@ function make_model_callback()
 
 ?>
 
-  <form id="make_model" action="<?php echo get_page_link(56) ?>" method="POST">
+  <form id="make_model" action="/form-collection" method="POST">
     <!-- Year Field -->
     <div class="elementor-field-type-select elementor-field-group">
       <div class="elementor-field elementor-select-wrapper">
@@ -47,10 +47,12 @@ function make_model_callback()
 
     <!-- Trim Field -->
     <div class="elementor-field-type-select elementor-field-group">
-      <div class="elementor-field elementor-select-wrapper">
+    <div class="elementor-field elementor-select-wrapper">
         <div class="select-caret-down-wrapper">
         </div>
-      <input type="text" id="trim" name="trim" disabled>
+        <select id="trim" name="trim" disabled>
+          <option value="">Trim</option>
+        </select>
       </div>
     </div>
 
