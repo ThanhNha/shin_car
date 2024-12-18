@@ -59,7 +59,7 @@ function make_model_callback()
     <div class="loading-spinner" id="loadingSpinner"></div>
     <div class="loading-spinner" id="makeModelloadingSpinner"></div>
 
-    <button class="button-submit" type="submit">GET AN INSTANT OFFER <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button class="button-submit" style="text-transform: uppercase;" type="submit">Get Instant Offer <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg></span></button>
@@ -152,7 +152,7 @@ function vin_form_callback()
 
     <div class="loading-spinner" id="vinFormloadingSpinner"></div>
 
-    <button class="button-submit" type="submit">GET AN INSTANT OFFER <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <button class="button-submit" style="text-transform: uppercase;" type="submit">Get Instant Offer <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg></span></button>

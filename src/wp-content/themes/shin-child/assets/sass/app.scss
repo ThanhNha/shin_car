@@ -27,7 +27,7 @@
       width: 50%;
 
       &.elementor-active {
-        background: #212121;
+        background: var(--e-global-color-primary);
       }
     }
   }
