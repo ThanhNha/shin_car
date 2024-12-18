@@ -106,7 +106,7 @@
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: var(--e-global-color-primary);
+    background-color: var(--e-global-color-secondary);
     color: white;
     border: none;
     border-radius: 4px;
@@ -115,7 +115,7 @@
     transition: all 0.3s ease;
     margin-top: 20px;
     &:hover {
-      background-color: var(--e-global-color-primary);
+      background-color: var(--e-global-color-secondary);
     }
   }
   .form-group {
