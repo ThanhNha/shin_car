@@ -62,7 +62,7 @@
   .sidebar-step.active.done {
     cursor: pointer !important;
     font-weight: bold;
-    color: #007bff;
+    color: var(--e-global-color-primary);
     pointer-events: all !important;
   }
   .sidebar-step.done {
