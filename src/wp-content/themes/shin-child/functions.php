@@ -12,3 +12,8 @@ if (!defined('SHIN_SSD_PATH'))
 foreach (glob(SHIN_DIR_PATH . "-child/includes/*.php") as $file_name) {
     require_once($file_name);
 }
+
+
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);

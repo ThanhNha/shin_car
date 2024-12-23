@@ -19,7 +19,7 @@ class SHIN_THEME {
 		Settings::get_instance();
 		Menus::get_instance();
 		Setting_Comment::get_instance();
-		Admin::get_instance();
+		// Admin::get_instance();
 		Acf::get_instance();
 		Optimise::get_instance();
 		Custom_Post_Type::get_instance();

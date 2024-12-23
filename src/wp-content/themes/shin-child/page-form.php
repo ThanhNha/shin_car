@@ -180,7 +180,7 @@ if (!isset($_REQUEST['year_car'])) return;
               <label for="exterior-fair">Fair (Visible damage, rust, or faded paint)</label>
             </div>
             <div class="radio-control">
-              <input type="radio" id="exterior-poor" name="exterior" value="fair" required>
+              <input type="radio" id="exterior-poor" name="exterior" value="poor" required>
               <label for="exterior-poor">Poor (Major damage, missing parts)</label>
             </div>
           </div>
@@ -205,7 +205,7 @@ if (!isset($_REQUEST['year_car'])) return;
               <label for="interior-fair">Fair (Tears or broken parts)</label>
             </div>
             <div class="radio-control">
-              <input type="radio" id="interior-poor" name="interior" value="fair" required>
+              <input type="radio" id="interior-poor" name="interior" value="poor" required>
               <label for="interior-poor">Poor (Significant damage or missing parts)</label>
             </div>
           </div>
@@ -228,7 +228,7 @@ if (!isset($_REQUEST['year_car'])) return;
               <label for="mechanical-fair">Fair (Runs but needs repairs)</label>
             </div>
             <div class="radio-control">
-              <input type="radio" id="mechanical-poor" name="mechanical" value="fair" required>
+              <input type="radio" id="mechanical-poor" name="mechanical" value="poor" required>
               <label for="mechanical-poor">Poor (Doesn’t run or requires major repairs)</label>
             </div>
           </div>
